@@ -1,0 +1,10 @@
+/* wy-nav-content の幅制限を解除する */
+.wy-nav-content {
+    max-width: none !important;
+}
+
+/* wy-table-responsive は幅一杯まで広げる */
+.wy-table-responsive {
+    width: 100% !important;
+    scrollbar-gutter: stable;
+}

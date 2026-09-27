@@ -1,0 +1,3 @@
+sphinx
+sphinx-needs
+sphinx_rtd_theme
