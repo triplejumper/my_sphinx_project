@@ -1,5 +1,6 @@
 import os
 import sys
+from pathlib import Path
 
 project = 'Sphinx-Needs Sample'
 copyright = '2026, Sample User'
@@ -18,6 +19,18 @@ needs_table_classes = ['datatable']
 
 # カスタムフィールド（任意項目）の定義
 needs_fields = {
+    'total_hours': {
+        'title': '合計工数',
+        'description': '作業にかかる合計時間の見積もり',
+        'type': 'string',      # スキーマの型指定 ('string', 'number', 'integer' など)
+        'nullable': True,      # 未設定 (空値) を許可するかどうか
+    },
+    'hours': {
+        'title': '工数',
+        'description': '単体タスクの工数',
+        'type': 'string',      # または 'number' (数値として扱う場合)
+        'nullable': True,
+    },
     'assignee': {
         'title': 'Assignee',
         'type': 'string',
@@ -39,3 +52,21 @@ html_static_path = ['_static']
 html_css_files = [
     'custom.css',
 ]
+
+
+# sys.path.append(str(Path(__file__).parent))
+import functions
+
+def setup(app):
+    # sphinx-needsがロードされた後に登録を促すため、APIを使用
+    from sphinx_needs.api.configuration import add_dynamic_function
+
+    add_dynamic_function(app, functions.sum_child_hours)
+    # app.connect('need-render-content', functions.on_render_need)
+    # add_post_processing(app, functions.update_needs_on_post_build)
+    app.connect("build-finished", functions.update_needs_on_post_build)
+    app.connect("env-before-read-docs", functions.env_before_read_docs)
+    # app.connect("env-updated", functions.env_updated)
+    app.connect("html-page-context", functions.html_page_context)
+
+# needs_render_content = functions.on_render_need

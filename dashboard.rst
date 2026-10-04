@@ -27,7 +27,7 @@
 .. needtable::
    :style: datatable
    :class: my-custom-table
-   :columns: type, id, title, status, priority, assignee, links
+   :columns: type, id, title, status, priority, assignee, links, content, hours,total_hours
    
 
 

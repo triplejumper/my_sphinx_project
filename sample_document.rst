@@ -9,6 +9,8 @@
    :status: open
    :priority: High
    :assignee: 山田
+   :hours: 5
+   :total_hours: [[ sum_child_hours() ]]
 
    ユーザーはメールアドレスとパスワードでシステムにログインできること。
 
@@ -17,6 +19,8 @@
    :status: open
    :priority: Medium
    :assignee: 鈴木
+   :links: REQ_001
+   :hours: 4.25
 
    登録済みメールアドレス宛に再設定リンクを送信できること。
 
@@ -107,6 +111,7 @@
    :id: SPEC_001
    :status: implemented
    :links: REQ_001,REQ_002
+   :total_hours: [[ sum_child_hours() ]]
 
    POST /api/v1/login リクエストを受け取り、JWTトークンを返す。
 
